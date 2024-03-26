@@ -3,7 +3,7 @@ import { MovieDetails } from "../features/movies/pages/MovieDetails";
 import { MovieSearchResults } from "../features/movies/pages/MovieSearchResults";
 import { MoviesList } from "../features/movies/pages/MoviesList";
 import { Layout } from "../features/movies/components/Layout";
-import { ErrorBoundary } from "./ErrorBoundary";
+import { ErrorBoundary } from "../components/ErrorBoundary";
 
 export const routes: RouteObject[] = [
   {
