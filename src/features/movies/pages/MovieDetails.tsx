@@ -3,6 +3,7 @@ import { MovieDetails as MovieDetailsComponent } from "../components/MovieDetail
 import { useLazyGetMovieByIdQuery } from "../api/moviesApi";
 import { useEffect } from "react";
 import { LoadingSpinner } from "../../../components/LoadingSpinner";
+import { BackButton } from "../components/BackButton";
 
 export function MovieDetails() {
   const { movieId } = useParams();
@@ -16,21 +17,28 @@ export function MovieDetails() {
 
   if (!movieId) return <Navigate to={"movies"} />;
 
-  if (isFetching)
-    return (
-      <div className="block w-1/2 mx-auto">
-        <LoadingSpinner />
+  return (
+    <div>
+      <div>
+        {isFetching ? (
+          <div className="block w-1/2 mx-auto">
+            <LoadingSpinner />
+          </div>
+        ) : isError ? (
+          <p className="text-red-900">
+            Unable to load movie {(error as string) ? `: ${error}` : ""}
+          </p>
+        ) : !movie ? (
+          <p className="text-red-900">Movie not found</p>
+        ) : (
+          <div>
+            <MovieDetailsComponent {...movie} />
+          </div>
+        )}
       </div>
-    );
-
-  if (isError)
-    return (
-      <p className="text-red-900">
-        Unable to load movie {(error as string) ? `: ${error}` : ""}
-      </p>
-    );
-
-  if (!movie) return <p className="text-red-900">Movie not found</p>;
-
-  return <MovieDetailsComponent {...movie} />;
+      <div>
+        <BackButton />
+      </div>
+    </div>
+  );
 }
