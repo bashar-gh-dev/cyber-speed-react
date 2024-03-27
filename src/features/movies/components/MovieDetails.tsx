@@ -27,11 +27,11 @@ export function MovieDetails(
           <p className="text-lg mb-5 text-gray-700">{props.description}</p>
           <div className="mb-5 ">
             <p className="font-bold">Actors:</p>
-            <p className="text-gray-700">{props.actors}</p>
+            <p className="text-gray-700">{props.actors.join(", ")}</p>
           </div>
           <div>
             <p className="font-bold">Keywords:</p>
-            <p className="text-gray-700">{props.actors.join(", ")}</p>
+            <p className="text-gray-700">{props.keywords.join(", ")}</p>
           </div>
         </div>
       </div>
