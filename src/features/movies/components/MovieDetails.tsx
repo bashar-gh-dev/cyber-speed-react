@@ -20,7 +20,7 @@ export function MovieDetails(
             backgroundImage: `url(${props.imageUrl})`,
           }}
         ></div>
-        <div className="px-4 flex flex-col justify-center items-stretch">
+        <div className="lg:px-4 flex flex-col justify-center items-stretch">
           <p className="mb-2 font-bold text-xl tracking-wide truncate">
             {props.title}
           </p>
