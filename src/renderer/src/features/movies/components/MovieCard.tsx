@@ -2,6 +2,7 @@ import { PropsWithoutRef } from "react";
 import { Link } from "react-router-dom";
 import { NO_IMAGE_PLACE_HOLDER_URL } from "../../../consts";
 
+
 export function MovieCard(
   props: PropsWithoutRef<{
     id: string;

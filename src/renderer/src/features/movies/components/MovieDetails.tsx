@@ -1,6 +1,7 @@
 import { PropsWithoutRef } from "react";
 import { NO_IMAGE_PLACE_HOLDER_URL } from "../../../consts";
 
+
 export function MovieDetails(
   props: PropsWithoutRef<{
     id: string;
