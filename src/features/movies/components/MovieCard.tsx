@@ -1,5 +1,6 @@
 import { PropsWithoutRef } from "react";
 import { Link } from "react-router-dom";
+import { NO_IMAGE_PLACE_HOLDER_URL } from "../../../consts";
 
 export function MovieCard(
   props: PropsWithoutRef<{
@@ -13,7 +14,11 @@ export function MovieCard(
     <div className="rounded bg-white">
       <div
         className="w-full h-[25rem] bg-cover bg-center"
-        style={{ backgroundImage: `url(${props.imageUrl})` }}
+        style={{
+          backgroundImage: `url(${
+            props.imageUrl ?? NO_IMAGE_PLACE_HOLDER_URL
+          })`,
+        }}
       ></div>
       <div className="border-x-[1px] border-b-[1px] rounded-b">
         <div className="px-6 py-4 border-gray-100">

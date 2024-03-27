@@ -1,5 +1,6 @@
 import { PropsWithoutRef } from "react";
 import { Link } from "react-router-dom";
+import { NO_IMAGE_PLACE_HOLDER_URL } from "../../../consts";
 
 export function SearchResult(
   props: PropsWithoutRef<{
@@ -12,7 +13,11 @@ export function SearchResult(
     <div className="rounded bg-white w-full flex flex-nowrap">
       <div
         className="w-[7rem] h-[10rem] bg-cover bg-center"
-        style={{ backgroundImage: `url(${props.imageUrl})` }}
+        style={{
+          backgroundImage: `url(${
+            props.imageUrl ?? NO_IMAGE_PLACE_HOLDER_URL
+          })`,
+        }}
       ></div>
       <div className="flex-grow flex flex-col justify-center px-10 border-y-[1px] border-r-[1px] rounded">
         <div className="p-2 font-bold text-xl tracking-wide truncate">

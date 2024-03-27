@@ -1,4 +1,5 @@
 import { PropsWithoutRef } from "react";
+import { NO_IMAGE_PLACE_HOLDER_URL } from "../../../consts";
 
 export function MovieDetails(
   props: PropsWithoutRef<{
@@ -17,7 +18,9 @@ export function MovieDetails(
         <div
           className="flex-shrink-0 min-h-[30rem] min-w-[20rem] lg:max-w-[33.3%] flex-grow justify-stretch bg-contain bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url(${props.imageUrl})`,
+            backgroundImage: `url(${
+              props.imageUrl ?? NO_IMAGE_PLACE_HOLDER_URL
+            })`,
           }}
         ></div>
         <div className="lg:px-4 flex flex-col justify-center items-stretch">
