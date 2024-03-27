@@ -12,7 +12,7 @@ export const moviesApi = createApi({
           const response = await moviesService.findRandom();
           return { data: response };
         } catch (error) {
-          return { error: error };
+          return { error: "network error" };
         }
       },
     }),
@@ -22,7 +22,7 @@ export const moviesApi = createApi({
           const response = await moviesService.findById(id);
           return { data: response };
         } catch (error) {
-          return { error: error };
+          return { error: "network error" };
         }
       },
     }),
@@ -32,7 +32,7 @@ export const moviesApi = createApi({
           const response = await moviesService.search(keyword);
           return { data: response };
         } catch (error) {
-          return { error: error };
+          return { error: "network error" };
         }
       },
     }),
