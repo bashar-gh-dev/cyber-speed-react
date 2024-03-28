@@ -1,30 +1,50 @@
-# React + TypeScript + Vite
+///////////////////////
+///////////////////////
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Hello, my name is Bashar.
+I really appreciate this opportunity, and I look forward to work with you.
 
-Currently, two official plugins are available:
+///////////////////////
+///////////////////////
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Before you start please notice that there are no documentation for the movies api which provided in the assessment (for example there are no instructions how to use pagination), also I could not find an api for fetching random movies. As a result I was forced to use the same movies search api with empty keyword for movies list api.
 
-## Expanding the ESLint configuration
+How to run react application:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+0- Clone this project and change dir into it ^_^
 
-- Configure the top-level `parserOptions` property like this:
+git clone https://github.com/bashar-gh-dev/cyber-speed-react.git && cd cyber-speed-react
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+1- Install node packages
+
+npm install
+
+
+2- Run dev server
+
+npm run dev
+
+
+3- open your browser (url: http://localhost:5174/)
+
+///////////////////////
+///////////////////////
+TODO: electron
+
+As I am not familiar with electron (this is the first time I touch electron code), I decided to keep it in other branch: 'electron-wip'. Therefore, I am sorry that you maybe not see well structured code or best practices (only for electron branch).
+
+If you still want to have a look into electron branch:
+
+
+1- Checkout to the branch electron-wip
+
+git checkout electron-wip
+
+
+2- Re install node packages
+
+npm install
+
+
+3- Run the command: npm run dev:electron

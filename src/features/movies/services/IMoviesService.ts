@@ -1,3 +1,11 @@
+// Any movies api provider should fulfill this interface
+
+export interface IMoviesService {
+  findRandom(): Promise<FindRandom>;
+  findById(id: string): Promise<Details>;
+  search(keyword: string): Promise<Search>;
+}
+
 type FindRandom = {
   id: string;
   title: string;
@@ -16,10 +24,3 @@ type Details = {
   keywords: string[];
   reviews: { author: string; text: string; id: string }[];
 };
-
-// Any movies api provider should fulfill this interface
-export interface IMoviesService {
-  findRandom(): Promise<FindRandom>;
-  findById(id: string): Promise<Details>;
-  search(keyword: string): Promise<Search>;
-}

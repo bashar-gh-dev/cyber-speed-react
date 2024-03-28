@@ -1,4 +1,63 @@
+// An implementation for IMovies service (concrete class)
+
+
+// I could not find a documentation for this api (imdbot), and you did not provide any in the assessment
+
 import { IMoviesService } from "./IMoviesService";
+
+export class ImdbotMoviesService implements IMoviesService {
+  async search(keyword: string) {
+    return fetch(`https://search.imdbot.workers.dev/?q=${keyword}`, {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((jsonResponse: SearchResponse) =>
+        jsonResponse.description.map((movie) => ({
+          id: movie["#IMDB_ID"],
+          title: movie["#TITLE"],
+          imageUrl: movie["#IMG_POSTER"],
+        }))
+      );
+  }
+
+  // I could not find an api for fetching random movies. Therefore, I used the same search API with empty keyword
+  async findRandom() {
+    return fetch("https://search.imdbot.workers.dev/?q=", {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((jsonResponse: FindRandomResponse) => {
+        return jsonResponse.description.map((movie) => ({
+          id: movie["#IMDB_ID"],
+          title: movie["#TITLE"],
+          imageUrl: movie["#IMG_POSTER"],
+          actors: movie["#ACTORS"],
+        }));
+      });
+  }
+
+  async findById(id: string) {
+    return fetch(`https://search.imdbot.workers.dev/?tt=${id}`, {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((jsonResponse: FindByTTResponse) => ({
+        id: jsonResponse.imdbId,
+        title: jsonResponse.top.titleText.text,
+        imageUrl: jsonResponse.fake["#IMG_POSTER"],
+        description: jsonResponse.short.description,
+        actors: jsonResponse.short.actor.map((actor) => actor.name),
+        keywords: jsonResponse.top.keywords.edges.map(
+          (keyword) => keyword.node.text
+        ),
+        reviews: jsonResponse.top.featuredReviews.edges.map((edge) => ({
+          author: edge.node.author.nickName,
+          text: edge.node.text.originalText.plainText,
+          id: edge.node.author.nickName,
+        })),
+      }));
+  }
+}
 
 type FindByTTResponse = {
   short: {
@@ -1256,56 +1315,3 @@ type FindRandomResponse = {
   }[];
   error_code: number;
 };
-
-export class ImdbotMoviesService implements IMoviesService {
-  async findRandom() {
-    return fetch("https://search.imdbot.workers.dev/?q=", {
-      method: "GET",
-    })
-      .then((response) => response.json())
-      .then((jsonResponse: FindRandomResponse) => {
-        return jsonResponse.description.map((movie) => ({
-          id: movie["#IMDB_ID"],
-          title: movie["#TITLE"],
-          imageUrl: movie["#IMG_POSTER"],
-          actors: movie["#ACTORS"],
-        }));
-      });
-  }
-
-  async search(keyword: string) {
-    return fetch(`https://search.imdbot.workers.dev/?q=${keyword}`, {
-      method: "GET",
-    })
-      .then((response) => response.json())
-      .then((jsonResponse: SearchResponse) =>
-        jsonResponse.description.map((movie) => ({
-          id: movie["#IMDB_ID"],
-          title: movie["#TITLE"],
-          imageUrl: movie["#IMG_POSTER"],
-        }))
-      );
-  }
-
-  async findById(id: string) {
-    return fetch(`https://search.imdbot.workers.dev/?tt=${id}`, {
-      method: "GET",
-    })
-      .then((response) => response.json())
-      .then((jsonResponse: FindByTTResponse) => ({
-        id: jsonResponse.imdbId,
-        title: jsonResponse.top.titleText.text,
-        imageUrl: jsonResponse.fake["#IMG_POSTER"],
-        description: jsonResponse.short.description,
-        actors: jsonResponse.short.actor.map((actor) => actor.name),
-        keywords: jsonResponse.top.keywords.edges.map(
-          (keyword) => keyword.node.text
-        ),
-        reviews: jsonResponse.top.featuredReviews.edges.map((edge) => ({
-          author: edge.node.author.nickName,
-          text: edge.node.text.originalText.plainText,
-          id: edge.node.author.nickName,
-        })),
-      }));
-  }
-}
